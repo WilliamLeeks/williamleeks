@@ -1,4 +1,8 @@
-var body = document.querySelector( 'body' );
+var container = document.querySelector( '.container' );
+var details = document.querySelector( '.details' );
+var h1 = 120;
+var h2 = 210;
+var deg = 45;
 
 function handleTilt(e) {
     var x = e.beta;  // In degree in the range [-180,180]
@@ -14,26 +18,36 @@ function handleTilt(e) {
     x += 90;
     y += 90;
 
-    bVal = Math.round( x * 1.416666667 ); // 255/180 = 1.416666667
-    gVal = Math.round( y * 1.416666667 );
+    var h1 = Math.round( x * 2 );
+    var h2 = Math.round( y * 2 );
 
-    body.style.backgroundColor = 'rgb(0, ' + gVal + ', ' + bVal + ')';
+    container.style.background = 'linear-gradient( 45deg, hsl(' + h1  + ', 100%, 30%), hsl(' + h2 + ', 100%, 30%))';
 }
 
+var centreX = window.innerWidth / 2;
+var centreY = window.innerHeight / 2;
+
 function handleMouse(e) {
-    var x = e.pageX; 
-    var y = e.pageY;
-    
-    var w = window.innerWidth;
-    var h = window.innerHeight;
+    // Increment colour and gradient rotation
+    if ( h1 === 360 ) {
+        h1 = 0;
+    } else {
+        h1++;
+    }
 
-    var xP = x / w;
-    var yP = y / h;
+    if ( h2 === 360 ) {
+        h2 = 0;
+    } else {
+        h2++;
+    }
 
-    var bVal = 127 + Math.round( xP * 127 );
-    var gVal = 127 + Math.round( yP * 127 );
+    if ( deg === 360 ) {
+        deg = 0;
+    } else {
+        deg++;
+    }
 
-    body.style.backgroundColor = 'rgb(0, ' + bVal + ', ' + gVal + ')';
+    container.style.background = 'linear-gradient(' + deg + 'deg, hsl(' + h1 + ', 100%, 30%), hsl(' + h2 + ', 100%, 30%))';
 }
 
 window.addEventListener('deviceorientation', handleTilt);
