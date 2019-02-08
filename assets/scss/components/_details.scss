@@ -3,20 +3,69 @@
  */
 
 .details {
-    width: 260px;
+    width: 270px;
+
+    @media screen and (min-width: 440px) {
+        width: 330px;
+    }
 
     h1 {
-        font-weight: bold;
-        margin-bottom: 5px;
+        font-size: 1.8rem;
     }
 
     h2 {
-        font-size: 14px;
-        font-style: italic;
-        margin-bottom: 15px;
+        text-transform: uppercase;
+        margin-bottom: 2rem;
+        font-size: 1rem;
+        letter-spacing: 2px;
     }
 
     p {
-        font-size: 14px;
+        font-size: 1rem;
+    }
+
+    a {
+        &:link,
+        &:visited {
+            display: inline-block;
+            color: white;
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+            vertical-align: bottom;
+
+            &:before,
+            &:after {
+                position: absolute;
+                content: '';
+                width: 100%;
+                bottom: 3px;
+                left: 0;
+                height: 1px;
+                transition: transform .3s ease-in-out;
+            }
+
+            &:before {
+                transform: translateX(-100%);
+                background: white;
+            }
+
+            &:after {
+                background: rgba(255, 255, 255, 0.5);
+            }
+        }
+
+        &:hover {
+            &:before {
+                transform: translateX(0);
+            }
+            &:after {
+                transform: translateX(100%);
+            }
+        }
+
+        &:focus {
+            outline: 1px dotted white;
+        }
     }
 }

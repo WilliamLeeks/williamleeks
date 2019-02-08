@@ -2,8 +2,12 @@
  * Typography
  */
 
+@import url('https://fonts.googleapis.com/css?family=Cousine');
+
 body {
-    font-family: Verdana, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    font-family: 'Cousine', Verdana, sans-serif;
     color: white;
-    line-height: 1.4;
+    line-height: 1.6;
+    font-size: 20px;
 }
